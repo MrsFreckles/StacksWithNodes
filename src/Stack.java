@@ -8,9 +8,7 @@ public class Stack<T> {
     }
 
     public T top() {
-        if (tail == null) {
-            return null;
-        }
+        if (tail == null) return null;
         return tail.getContent();
     }
 
@@ -26,9 +24,7 @@ public class Stack<T> {
     }
 
     public T pop() {
-        if (head == null) {
-            return null;
-        }
+        if (tail == null) return null;
         T temp = tail.getContent();
         if (head == tail) {
             head = null;
