@@ -1,20 +1,20 @@
-public class Stacks<T> {
+public class Stack<T> {
 
     private Node<T> head = null;
     private Node<T> tail = null;
 
     public boolean isEmpty() {
-        return head == null;
+        return tail == null;
     }
 
-    public T front() {
-        if (head == null) {
+    public T top() {
+        if (tail == null) {
             return null;
         }
-        return head.getContent();
+        return tail.getContent();
     }
 
-    public void enqueue(T o) {
+    public void push(T o) {
         Node<T> newNode = new Node<>(o);
         if (head == null) {
             head = newNode;
@@ -25,15 +25,27 @@ public class Stacks<T> {
         }
     }
 
-    public T dequeue() {
+    public T pop() {
         if (head == null) {
             return null;
         }
-        T temp = head.getContent();
-        head = head.getNext();
+        T temp = tail.getContent();
+        // Falls es nur ein Element gibt, leeren wir den Stack
+        if (head == tail) {
+            head = null;
+            tail = null;
+        } else {
+            // Suche den Knoten, der direkt vor dem tail liegt
+            Node<T> current = head;
+            while (current.getNext() != tail) {
+                current = current.getNext();
+            }
+            // Setze den gefundenen Knoten als neuen tail
+            tail = current;
+            tail.setNext(null);
+        }
         return temp;
     }
-
 
     public class Node<T> {
         private T content = null;
