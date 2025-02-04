@@ -30,17 +30,14 @@ public class Stack<T> {
             return null;
         }
         T temp = tail.getContent();
-        // Falls es nur ein Element gibt, leeren wir den Stack
         if (head == tail) {
             head = null;
             tail = null;
         } else {
-            // Suche den Knoten, der direkt vor dem tail liegt
             Node<T> current = head;
             while (current.getNext() != tail) {
                 current = current.getNext();
             }
-            // Setze den gefundenen Knoten als neuen tail
             tail = current;
             tail.setNext(null);
         }
